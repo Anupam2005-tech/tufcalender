@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { 
   format, 
   addMonths, 
@@ -40,18 +41,18 @@ interface Notes {
 type ViewMode = 'day' | 'week' | 'month' | 'year';
 
 const MONTHLY_IMAGES: { [key: string]: string } = {
-  'January': 'https://images.unsplash.com/photo-1477601263568-187f0a74ad92?auto=format&fit=crop&w=1200&q=80',
-  'February': 'https://images.unsplash.com/photo-1516627145497-ae65658f26d7?auto=format&fit=crop&w=1200&q=80',
-  'March': 'https://images.unsplash.com/photo-1490750967868-85698f719333?auto=format&fit=crop&w=1200&q=80',
-  'April': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
-  'May': 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80',
-  'June': 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
-  'July': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-  'August': 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
-  'September': 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
-  'October': 'https://images.unsplash.com/photo-1476820865390-ed3be7759675?auto=format&fit=crop&w=1200&q=80',
-  'November': 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1200&q=80',
-  'December': 'https://images.unsplash.com/photo-1483921321769-677a4bd77574?auto=format&fit=crop&w=1200&q=80',
+  'January': '/images/calendar/January.jpg',
+  'February': '/images/calendar/February.jpg',
+  'March': '/images/calendar/March.jpg',
+  'April': '/images/calendar/April.jpg',
+  'May': '/images/calendar/May.jpg',
+  'June': '/images/calendar/June.jpg',
+  'July': '/images/calendar/July.jpg',
+  'August': '/images/calendar/August.jpg',
+  'September': '/images/calendar/September.jpg',
+  'October': '/images/calendar/October.jpg',
+  'November': '/images/calendar/November.jpg',
+  'December': '/images/calendar/December.jpg',
 };
 
 export default function Calendar() {
@@ -231,8 +232,15 @@ export default function Calendar() {
   return (
     <div className="flex flex-col lg:flex-row gap-10 max-w-7xl w-full bg-white p-6 md:p-12 rounded-[40px] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)] border border-slate-100">
       <div className="flex-1 flex flex-col gap-8">
-        <div className="relative h-72 md:h-96 w-full rounded-[32px] overflow-hidden shadow-2xl group">
-          <img src={heroImage} alt={monthName} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+        <div className="relative h-72 md:h-96 w-full rounded-[32px] overflow-hidden shadow-2xl group bg-slate-200">
+          <Image 
+            src={heroImage} 
+            alt={monthName} 
+            fill 
+            className="object-cover transition-transform duration-1000 group-hover:scale-110 animate-in fade-in duration-500"
+            priority
+            key={monthName}
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
           <div className="absolute bottom-8 left-8 text-white">
             <h1 className="text-5xl md:text-7xl font-serif font-bold tracking-tight drop-shadow-lg">{monthName}</h1>
